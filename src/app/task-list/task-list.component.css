@@ -1,0 +1,37 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.example-card {
+    max-width: 400px;
+    background-color: #4682B4;
+}
+
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}
+
+.toolbar {
+    background-color: #4682B4;
+}
+
+table {
+    width: 100%;
+}
+
+tr {
+    border: solid 1px whitesmoke;
+}
+
+.modal-content {
+    background-color: #4682B4;
+}
+
+form {
+    padding: 10px;
+}
+
+mat-form-field {
+    margin: 10px;
+}

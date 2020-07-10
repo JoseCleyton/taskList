@@ -24,13 +24,14 @@ export class TaskListComponent implements OnInit {
       'title': new FormControl(null, [Validators.required]),
       'description': new FormControl(null, [Validators.required])
     })
+
     this.formNewTaskList = new FormGroup({
       'title': new FormControl(null, [Validators.required]),
       'description': new FormControl(null, [Validators.required])
     })
 
     this.taskService.findAll().subscribe(
-      (data: any[]) => { this.taskList = data; console.log(data) }
+      (data: TaskList[]) => this.taskList = data
     )
   }
 
@@ -38,7 +39,7 @@ export class TaskListComponent implements OnInit {
     this.taskL = this.taskList.find((t) => {
       return t.id === id
     })
-    console.log(this.taskL)
+
   }
   public selectTaskToDone(id: number) {
     this.taskList.find((tl) => {
@@ -54,9 +55,8 @@ export class TaskListComponent implements OnInit {
     this.task.done = true
     this.taskService.doneTask(this.task).subscribe(
       (data) => {
-        console.log(data);
         this.taskService.findAll().subscribe(
-          (data: any[]) => {
+          (data: TaskList[]) => {
             this.taskList = data;
           }
         )
@@ -76,9 +76,9 @@ export class TaskListComponent implements OnInit {
 
   public deleteTask() {
     this.taskService.deleteTask(this.task).subscribe(
-      ()=>{
+      () => {
         this.taskService.findAll().subscribe(
-          (data: TaskList[])=>{
+          (data: TaskList[]) => {
             this.taskList = data
           }
         )
@@ -100,13 +100,11 @@ export class TaskListComponent implements OnInit {
         )
       }
     )
-    console.log(task)
   }
   public createTaskList() {
     let tasklist = new TaskList(this.formNewTaskList.value.title, this.formNewTaskList.value.description);
     this.taskService.createNewTaskList(tasklist).subscribe(
       (data) => {
-        console.log(data);
         this.taskService.findAll().subscribe(
           (data: any[]) => {
             this.taskList = data;

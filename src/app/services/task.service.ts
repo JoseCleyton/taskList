@@ -13,27 +13,27 @@ export class TaskService {
 
 
   public findAll():Observable<TaskList[]>{
-    return this.htpp.get<TaskList[]>('http://localhost:8080/taskList')
+    return this.htpp.get<TaskList[]>('https://api-tasklist-manager.herokuapp.com/taskList')
   }
   public addtask(task: Task):Observable<Task>{
-    return this.htpp.post<Task>(`http://localhost:8080/task/${task.taskList.id}`, {
+    return this.htpp.post<Task>(`https://api-tasklist-manager.herokuapp.com/task/${task.taskList.id}`, {
       title: task.title,
       description: task.description
     })
   }
   public createNewTaskList(taskList: TaskList):Observable<TaskList>{
-    return this.htpp.post<TaskList>('http://localhost:8080/taskList', {
+    return this.htpp.post<TaskList>('https://api-tasklist-manager.herokuapp.com/taskList', {
       title: taskList.title,
       description: taskList.description
     })
   }
   public doneTask(task: Task):Observable<Task>{
-    return this.htpp.put<Task>(`http://localhost:8080/task/${task.id}`, {
+    return this.htpp.put<Task>(`https://api-tasklist-manager.herokuapp.com/task/${task.id}`, {
       title: task.title,
       description: task.description
     })
   }
   public deleteTask(task: Task):Observable<Task>{
-    return this.htpp.delete<Task>(`http://localhost:8080/task/${task.id}`);
+    return this.htpp.delete<Task>(`https://api-tasklist-manager.herokuapp.com/task/${task.id}`);
   }
 }
